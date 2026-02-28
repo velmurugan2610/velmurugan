@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c1c1c);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      position: fixed;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    nav h2 {
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #00f2fe;
+    }
+    section {
+      min-height: 100vh;
+      padding: 120px 8% 60px;
+    }
+    .about {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .name {
+      color: #00f2fe;
+    }
+    .about-left {
+      flex: 1;
+    }
+
+    .about-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-right img {
+      width: 320px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #00f2fe;
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.6);
+      transition: 0.4s;
+    }
+    .about-right img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 50px rgba(0, 242, 254, 0.9);
+    }
+    @media(max-width:900px) {
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    .typing-text {
+      font-size: 32px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .typing-text span {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #fff;
+      background: linear-gradient(90deg, #ff6a00, #ee0979, #00f2fe, #4facfe);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation:
+        typing 3s steps(38, end) infinite alternate,
+        blink 11s infinite,
+        colorMove 4s linear infinite;
+    }
+    @keyframes typing {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 105%
+      }
+    }
+    @keyframes blink {
+      50% {
+        border-color: transparent
+      }
+    }
+    @keyframes colorMove {
+      0% {
+        background-position: 0%
+      }
+
+      100% {
+        background-position: 100%
+      }
+    }
+    .about-social {
+      margin-top: 20px;
+    }
+
+    .about-social a {
+      margin-right: 15px;
+      font-size: 22px;
+      color: #4facfe;
+      transition: 0.3s;
+    }
+
+    .about-social a:hover {
+      color: #00f2fe;
+      transform: translateY(-5px);
+    }
+    .about-cta {
+      margin-top: 25px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .download-btn {
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      color: white;
+    }
+
+    .download-btn:hover {
+      box-shadow: 0 10px 25px rgba(79, 172, 254, 0.6);
+      transform: translateY(-5px);
+    }
+    .hire-btn {
+      border: 2px solid #4facfe;
+      color: #4facfe;
+    }
+
+    .hire-btn:hover {
+      background: #4facfe;
+      color: white;
+      transform: translateY(-5px);
+    }
+    .education {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      padding: 60px 10%;
+    }
+
+    .education-left {
+      flex: 1;
+    }
+
+    .education-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .timeline {
+      border-left: 4px solid #00f2fe;
+      padding-left: 20px;
+    }
+
+    .timeline-item {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      position: absolute;
+      left: -11px;
+      top: 5px;
+      width: 15px;
+      height: 15px;
+      background: #00f2fe;
+      border-radius: 50%;
+    }
+
+    .timeline-item h3 {
+      color: #00f2fe;
+      margin-bottom: 5px;
+    }
+
+    .student-gif img {
+      width: 350px;
+      animation: float 3s ease-in-out infinite alternate;
+      right: 30px;
+
+    }
+    @keyframes float {
+      from {
+        transform: translateY(0px);
+      }
+
+      to {
+        transform: translateY(20px);
+      }
+    }
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 25px;
+    }
+    .project-card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      transition: 0.4s;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    /* Text Styling */
+    .project-card h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .project-card p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .projects-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    /* Card */
+    .project-card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      transition: 0.4s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+    .project-gif img {
+      width: 100%;
+      max-width: 350px;
+    }
+    .skills-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      align-items: center;
+      gap: 40px;
+    }
+    .skill {
+      margin-bottom: 25px;
+    }
+
+    .skill-bar {
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .skill-bar span {
+      display: block;
+      height: 12px;
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+    }
+    .skills-right img {
+      width: 100%;
+      max-width: 350px;
+    }
+    .certificate-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .certificate-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .certificate-card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      transition: 0.4s;
+      text-align: center;
+
+      .certificate-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 cards in one row */
+        gap: 25px;
+      }
+      cursor: pointer;
+    }
+    .certificate-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+    .certificate-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+    .certificate-card:active {
+      transform: scale(0.97);
+    }
+    /* CONTACT */
+    #contact {
+      padding: 80px 10%;
+      text-align: center;
+    }
+    .contact-container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      color: white;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    /* Focus Animation */
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      box-shadow: 0 0 10px #4facfe;
+      transform: scale(1.02);
+    }
+    /* Button */
+    .contact-form button {
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    /* Hover Effect */
+    .contact-form button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(79, 172, 254, 0.6);
+    }
+    .contact-form button:active {
+      transform: scale(0.95);
+    }
+    /* Social Links */
+    .social-links {
+      margin-top: 30px;
+    }
+    .social-links a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #4facfe;
+      transition: 0.3s;
+    }
+    .social-links a:hover {
+      color: #00f2fe;
+    }
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    footer p {
+      margin-bottom: 10px;
+    }
+    .footer-social a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #00f2fe;
+    }
+    .footer-social a:hover {
+      text-decoration: underline;
+    }
+    @media(max-width:768px) {
+      .about h1 {
+        font-size: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h2>VELMURUGAN D</h2>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certificate">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="about-left">
+      <h1 class="name">Hi I'm Velmurugan D</h1>
+      <h1 class="typing-text">
+        <span>Frontend & UI/UX Designer</span>
+      </h1>
+      <p class="typing-para">
+        Passionate Frontend & UI/UX Designer skilled in building responsive
+        and modern web interfaces. Dedicated to creating intuitive,
+        user-centered designs with clean and structured code.
+      </p>
+      <div class="about-buttons">
+        <div class="about-social">
+          <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/" target="_blank">GitHub</a>
+          <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+        </div>
+        <div class="about-cta">
+          <a href="Velmurugan_CV.pdf" download class="btn download-btn">Download CV</a>
+          <a href="#contact" class="btn hire-btn">Hire Me</a>
+        </div>
+      </div>
+    </div>
+    <div class="about-right">
+      <img src="image10.jpg" alt="Velmurugan">
+    </div>
+  </section>
+  <!-- EDUCATION -->
+  <section id="education" class="education">
+    <div class="education-left">
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>B.E, Computer Science Engineering</h3>
+          <p>Peri Institute Of Technology | 7.6 CGPA | 2020 - 2024</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Higher Secondary</h3>
+          <p>Government Higher Secondary School | 52% | 2018 - 2020</p>
+        </div>
+        <div class="timeline-item">
+          <h3>SSLC</h3>
+          <p>Government Higher Secondary School | 71% | 2017 - 2018</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-wrapper">
+      <!-- LEFT SIDE PROJECTS -->
+      <div class="projects-container">
+        <div class="project-card">
+          <img src="image333.png" alt="p-1">
+          <h3>CAMPUS REQUIREMENT MANAGEMENT SYSTEM</h3>
+          <p>Campus Requirement Management System description...</p>
+        </div>
+        <div class="project-card">
+          <img src="image444.png" alt="p-2">
+          <h3>AI ENABLED CAR PARKING</h3>
+          <p>AI parking using OpenCV description...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-wrapper">
+      <div class="skills-left">
+        <div class="skill">
+          <p>Operating System - LINUX, WINDOWS</p>
+          <div class="skill-bar"><span style="width:95%"></span></div>
+        </div>
+        <div class="skill">
+          <p>Web Technologies - HTML, CSS, BOOTSTRAP</p>
+          <div class="skill-bar"><span style="width:90%"></span></div>
+        </div>
+        <div class="skill">
+          <p>Programming Languages - PYTHON, JAVASCRIPT</p>
+          <div class="skill-bar"><span style="width:80%"></span></div>
+        </div>
+        <div class="skill">
+          <p>Design Tools - PHOTOSHOP, FIGMA, CANVA</p>
+          <div class="skill-bar"><span style="width:95%"></span></div>
+        </div>
+        <div class="skill">
+          <p>Tools & Services - GIT & GITHUB</p>
+          <div class="skill-bar"><span style="width:90%"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CERTIFICATES -->
+  <section id="certificate">
+    <h2>Certificates</h2>
+    <div class="certificate-wrapper">
+      <!-- LEFT SIDE CARDS -->
+      <div class="certificate-cards">
+        <div class="certificate-card">
+          <img src="image555.jpg" alt="Certificate 1">
+          <h3>IBM CLOUD Certificate</h3>
+        </div>
+        <div class="certificate-card">
+          <img src="image666.jpg" alt="Certificate 2">
+          <h3>DEVOPS Certificate</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-container">
+      <h2>Let's Connect</h2>
+      <p>Feel free to reach out 🚀</p>
+      <form class="contact-form">
+        <input type="email" placeholder="Enter your email" required>
+        <textarea placeholder="Enter your message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+  <footer>
+    <p>© 2026 Velmurugan | All Rights Reserved</p>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/" target="_blank">GitHub</a>
+      <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+    </div>
+  </footer>
+</body>
+</html>
